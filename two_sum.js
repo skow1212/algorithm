@@ -3,14 +3,15 @@
  * @param {number} target
  * @return {number[]}
  */
+//using map data structure to contain the index to num
 var twoSum = function (nums, target) {
-  let set = new Map();
+  let map = new Map();
   for (let i = 0; i < nums.length; i++) {
     let num = target - nums[i];
-    if (set.has(num)) {
-      return [set.get(num), i];
+    if (map.has(num)) {
+      return [map.get(num), i];
     } else {
-      set.set(nums[i], i);
+      map.set(nums[i], i);
     }
   }
   return null;
