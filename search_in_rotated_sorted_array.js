@@ -3,28 +3,26 @@
  * @param {number} target
  * @return {number}
  */
+//O(logn) - Binary Search 
 var search = function (nums, target) {
-  let left = 0;
-  let right = nums.length - 1;
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    if (nums[mid] === target) {
-      return mid;
-    }
-    if (nums[left] >= target) {
-      if (nums[left] === target) {
-        return left;
+  let l = 0,
+    r = nums.length - 1;
+  while (l <= r) {
+    let m = Math.floor((l + r) / 2);
+    if (nums[m] === target) return m;
+    if (nums[m] >= nums[l]) {
+      if (nums[l] <= target && target < nums[m]) {
+        r = m - 1;
+      } else {
+        l = m + 1;
       }
-      left = mid;
-    } else if (nums[right] <= target) {
-      if (nums[right] === target) {
-        return right;
+    } else {
+      if (nums[m] < target && target <= nums[r]) {
+        l = m + 1;
+      } else {
+        r = m - 1;
       }
-      right = mid;
     }
   }
   return -1;
 };
-
-let nums = [1];
-console.log(search(nums));
